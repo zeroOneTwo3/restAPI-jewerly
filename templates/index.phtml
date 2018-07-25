@@ -56,6 +56,33 @@
 				<tr>
 					<td>/api/items/[number]</td><td>GET</td><td>Returns an item with id=number</td>
 				</tr>
+				<tr>
+					<td>/api/categories/[number]</td><td>GET</td><td>Returns all items from category with id=number</td>
+				</tr>
+				<tr>
+					<td>/api/items/edit/[number]</td><td>GET</td><td>Open form for editing item with id=number</td>
+				</tr>
+				<tr>
+					<td>/api/items/edit/[number]</td><td>PUT</td><td>Update item with id=number</td>
+				</tr>
+				<tr>
+					<td>/api/items/add</td><td>GET</td><td>Open form for creating item</td>
+				</tr>
+				<tr>
+					<td>/api/items/add</td><td>POST</td><td>Create the new item</td>
+				</tr>
+				<tr>
+					<td>/api/items/delete/[number]</td><td>GET</td><td>Open form for deleting item</td>
+				</tr>
+				<tr>
+					<td>/api/items/delete/[number]</td><td>DELETE</td><td>Delete the item with id=number</td>
+				</tr>
+				<tr>
+					<td>/api/categories/add</td><td>GET/POST</td><td>See above</td>
+				</tr>
+				<tr>
+					<td>/api/categories/edit/[number]</td><td>GET/PUT/DELETE</td><td>See above</td>
+				</tr>
 				</table>
 		<?php } else { ?>
 			

@@ -3,7 +3,7 @@ $app->group('/api', function () use ($app){
 	/* CREATE */
 	$app->get('/items/add', function ($request, $response, $args) {
         // put log message
-        $this->logger->info("open form for editing item");
+        $this->logger->info("open form for creating item");
         return $this->renderer->render(
 			$response,
 			"item_form_create.phtml"
@@ -33,7 +33,7 @@ $app->group('/api', function () use ($app){
         //return json_encode($data, JSON_UNESCAPED_UNICODE);
 		return $this->renderer->render(
 			$response, 
-			'items.phtml', 
+			'all_data.phtml', 
 			json_decode($data)
 		);
     });
@@ -51,7 +51,7 @@ $app->group('/api', function () use ($app){
         //return json_encode($data, JSON_UNESCAPED_UNICODE);
 		return $this->renderer->render(
 			$response, 
-			'items.phtml', 
+			'all_data.phtml', 
 			$data = ["0" => $elem]
 		);
     });
@@ -95,11 +95,10 @@ $app->group('/api', function () use ($app){
 				->write('Bad Request');
 				return $this->response; 
 		} 
-		$elem = Item::find($args['id']);
 		return $this->renderer->render(
 			$response,
 			"item_form_update.phtml",
-			$data = json_decode($elem, true)
+			$item
 			);
     });
 	
@@ -116,13 +115,14 @@ $app->group('/api', function () use ($app){
     $app->delete('/items/delete/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("deleting item");
-        $data = Item::destroy($args['id']);
-		if($data == null)
+        $data = Category::destroy($args['id']);
+		if($data == null) {
 			$this->response
 				->withStatus(400)
 				->withHeader('Content-Type', 'text/html')
 				->write('Bad Request');
 				return $this->response; 
-        return $data;
+		}
+        return "Succesful!";
     });
 });
