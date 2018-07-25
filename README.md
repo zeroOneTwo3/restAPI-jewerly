@@ -16,7 +16,7 @@ This project uses Composer. To run the application in development, you can run t
 	cd restAPI-jewerly
 	php composer.phar install
   
-The full list of methods is displayed below:
+# The full list of methods is displayed below:
 
 | URL				| HTTP-method	| Operation					|
 |-------------------------------|---------------|-----------------------------------------------|
@@ -27,3 +27,5 @@ The full list of methods is displayed below:
 | /api/items/edit/[number]	| PUT		| Update item with id=number			|
 | /api/items/add		| GET		| Open form for creating item			|
 | /api/items/add		| POST		| Create the new item				|
+| /api/items/delete/[number]	| GET		| Open form for deleting item			|
+| /api/items/delete/[number]	| DELETE	| Delete the item with id=number		|
