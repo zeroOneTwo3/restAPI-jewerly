@@ -1,9 +1,14 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim 3 PHP Framework application example",
-    "keywords": ["microframework", "rest", "router", "psr7"],
-    "homepage": "http://github.com/slimphp/Slim-Skeleton",
+    "name": "zeroOneTwo3/restAPI-jewerly",
+    "description": "Example Slim Framework 3 application.",
     "license": "MIT",
+    "type": "project",
+    "keywords": ["slim-framework"],
+    "config" : {
+        "platform": {
+           "php": "5.5"
+        }
+    },
     "authors": [
         {
             "name": "zeroOneTwo3",
@@ -17,9 +22,5 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "illuminate/database": "~5.0"
-    },
-    "config": {
-        "process-timeout" : 0
     }
-
 }
