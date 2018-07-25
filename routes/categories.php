@@ -92,6 +92,10 @@ $app->group('/api', function () use ($app){
 	$app->delete('/categories/edit/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("deleting category");
+		$items = Item::where('category', $args['id'])->get();
+		foreach($items as $item) {
+			Item::destroy($item['id']);
+		}
 		$data = Category::destroy($args['id']);
 		if($data == null) {
 			$this->response

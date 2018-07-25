@@ -115,7 +115,7 @@ $app->group('/api', function () use ($app){
     $app->delete('/items/delete/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("deleting item");
-        $data = Category::destroy($args['id']);
+        $data = Item::destroy($args['id']);
 		if($data == null) {
 			$this->response
 				->withStatus(400)
