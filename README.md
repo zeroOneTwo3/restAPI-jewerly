@@ -4,7 +4,7 @@ This is a simple Slim PHP micro framework application that manages a list of ite
 
 Run git clone command from the directory in which you want to install your new Rest API application.
 
-git clone https://github.com/zeroOneTwo3/restAPI-jewerly.git
+	git clone https://github.com/zeroOneTwo3/restAPI-jewerly.git
 
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `logs/` is web writeable.
