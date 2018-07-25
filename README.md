@@ -1,5 +1,4 @@
 # restAPI-jewerly
-Slim Jewerly
 
 This is a simple Slim PHP micro framework application that manages a list of items
 
