@@ -18,8 +18,10 @@ This project uses Composer. To run the application in development, you can run t
   
 The full list of methods is displayed below:
 
-| URL				| HTTP-method	| Operation				|
-|-------------------------------|---------------|---------------------------------------|
-| /api/items			| GET		| Returns an array of items		|
-| /api/items/[number]		| GET		| Returns the item with id=number	|
-| /api/categories		| GET		| Returns an array of categories	|
+| URL				| HTTP-method	| Operation					|
+|-------------------------------|---------------|-----------------------------------------------|
+| /api/items			| GET		| Returns an array of items			|
+| /api/items/[number]		| GET		| Returns the item with id=number		|
+| /api/categories		| GET		| Returns an array of categories		|
+| /api/items/edit/[number]	| GET		| Open form for editing	item with id=number	|
+| /api/items/edit/[number]	| PUT		| Update item with id=number			|
