@@ -30,7 +30,14 @@ $app->group('/api', function () use ($app){
     $app->get('/items/[{id}]', function($request, $response, $args){
         // put log message
         $this->logger->info("getting item by id");
-        $elem = Item::find($args['id']);
+		$elem = Item::find($args['id']);
+		if($elem == null) {
+               $this->response
+				->withStatus(400)
+				->withHeader('Content-Type', 'text/html')
+				->write('Bad Request');
+				return $this->response; 
+		}
         //return json_encode($data, JSON_UNESCAPED_UNICODE);
 		return $this->renderer->render(
 			$response, 
@@ -40,16 +47,50 @@ $app->group('/api', function () use ($app){
     });
 	
 	/* UPDATE */
-    $app->put('/items/[{id}]', function ($request, $response, $args) {
+	$app->get('/items/edit/[{id}]', function ($request, $response, $args) {
+        // put log message
+        $this->logger->info("open form for editing item");
+		$elem = Item::find($args['id']);
+		if($elem == null) {
+               $this->response
+				->withStatus(400)
+				->withHeader('Content-Type', 'text/html')
+				->write('Bad Request');
+				return $this->response; 
+		} 
+        return $this->renderer->render(
+			$response,
+			"item_form.phtml",
+			$data = json_decode($elem, true)
+		);
+    });
+	
+    $app->put('/items/edit/[{id}]', function ($request, $response, $args) {
         // put log message
         $this->logger->info("updating item");
         $item = $request->getParsedBody();
-        $data = Book::where('id', $args['id'])->update([
-            'title' => $item['title'],
-            'author' => $item['author'],
-            'category' => $item['category']
-        ]);
-        return $this->response->withJson($data, 200);
+		try{
+			$result = Item::where('id', $args['id'])->update([
+				'name' => $item['name'],
+				'price' => $item['price'],
+				'description' => $item['description'],
+				'category' => $item['category'],
+				'material' => $item['material'],
+				'decoration' => $item['decoration']
+			]);
+		}catch (Illuminate\Database\QueryException $e) {
+               $this->response
+				->withStatus(400)
+				->withHeader('Content-Type', 'text/html')
+				->write('Bad Request');
+				return $this->response; 
+		} 
+		$elem = Item::find($args['id']);
+		return $this->renderer->render(
+			$response,
+			"item_form.phtml",
+			$data = json_decode($elem, true)
+			);
     });
 	
 	/* DELETE */

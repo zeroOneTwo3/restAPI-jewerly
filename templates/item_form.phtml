@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Slim 3</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 50px 0 0 0;
+                padding: 0;
+                width: 100%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #aaa;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+			.output{
+				width: 80%;
+				margin: 0 auto;
+				text-align: initial;
+			}
+			form  { display: table;      }
+			p{ 
+				display: table-row;
+				height: 30px;
+			}
+			label { display: table-cell; padding-right: 10px; }
+			input { display: table-cell; }
+			.container {
+				    text-align: center;
+					display: inline-block;
+			}
+			.update { 
+				display: block;
+				margin: auto 100%;
+			}
+        </style>
+    </head>
+    <body>
+        <h3>Update item:</h3>
+	<div class='container'>
+	<form id="myform" method="post">
+		<p>
+			<label for="uname">Set name</label>
+			<input type="text" id="uname" name="name"
+				value="<?php echo $data['name']; ?>">
+		</p>
+		<p>
+			<label for="uprice">Set price</label>
+			<input type="text" id="uprice" name="price" 
+			value="<?php echo $data['price']; ?>">
+		</p>
+		<p>
+			<label for="uprice">Set description</label>
+			<input type="text" id="udescription" name="description" 
+			value="<?php echo $data['description']; ?>">
+		</p>
+		<p>
+			<label for="uprice">Set category</label>
+			<input type="text" id="ucategory" name="category"
+			value="<?php echo $data['category']; ?>">
+		</p>
+		<p>
+			<label for="uprice">Set material</label>
+			<input type="text" id="umaterial" name="material" 
+				value="<?php echo $data['material']; ?>">
+		</p>
+		<p>
+			<label for="uprice">Set decoration</label>
+			<input type="text" id="udecoration" name="decoration"
+			value="<?php echo $data['decoration']; ?>">
+		</p>
+		<input type="hidden" name="_METHOD" value="PUT"/>
+		<input class='update' type="submit" value="Update Item"/>
+	</form>
+	
+	<script type = "text/javascript">
+ function submitform() {
+   $('#myform').attr('action', '');
+   var data = JSON.stringify({
+	   "name": $('#uname').val(),
+	   "price": $('#uprice').val(),
+	   "description": $('#udescription').val(),
+	   "category": $('#ucategory').val(),
+	   "material": $('#umaterial').val(),
+	   "decoration": $('#udecoration').val()
+	});
+   $('<input type="hidden" name="json"/>').val(data).appendTo('#myform');
+   $("#myform").submit();
+   }
+ </script>
+</body>
+</html>
