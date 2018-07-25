@@ -81,21 +81,5 @@
 		<input type="hidden" name="_METHOD" value="PUT"/>
 		<input class='update' type="submit" value="Update Item"/>
 	</form>
-	
-	<script type = "text/javascript">
- function submitform() {
-   $('#myform').attr('action', '');
-   var data = JSON.stringify({
-	   "name": $('#uname').val(),
-	   "price": $('#uprice').val(),
-	   "description": $('#udescription').val(),
-	   "category": $('#ucategory').val(),
-	   "material": $('#umaterial').val(),
-	   "decoration": $('#udecoration').val()
-	});
-   $('<input type="hidden" name="json"/>').val(data).appendTo('#myform');
-   $("#myform").submit();
-   }
- </script>
 </body>
 </html>

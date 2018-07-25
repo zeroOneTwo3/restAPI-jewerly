@@ -1,6 +1,15 @@
 <?php
 $app->group('/api', function () use ($app){
 	/* CREATE */
+	$app->get('/items/add', function ($request, $response, $args) {
+        // put log message
+        $this->logger->info("open form for editing item");
+        return $this->renderer->render(
+			$response,
+			"item_form_create.phtml"
+		);
+    });
+	
     $app->post('/items/add', function ($request, $response) {
         // put log message
         $this->logger->info("saving item");
@@ -10,9 +19,10 @@ $app->group('/api', function () use ($app){
             'name' => $item['name'],
             'price' => $item['price'],
             'description' => $item['description'],
-			'material' => $item['material']
+			'material' => $item['material'],
+			'decoration' => $item['decoration']
         ]);
-        //return $this->response->withJson($data, 200);
+        return "Succesful!";
     });
 	
 	/* READ */
@@ -27,7 +37,7 @@ $app->group('/api', function () use ($app){
 			json_decode($data)
 		);
     });
-    $app->get('/items/[{id}]', function($request, $response, $args){
+    $app->get('/items/{id}', function($request, $response, $args){
         // put log message
         $this->logger->info("getting item by id");
 		$elem = Item::find($args['id']);
@@ -47,7 +57,7 @@ $app->group('/api', function () use ($app){
     });
 	
 	/* UPDATE */
-	$app->get('/items/edit/[{id}]', function ($request, $response, $args) {
+	$app->get('/items/edit/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("open form for editing item");
 		$elem = Item::find($args['id']);
@@ -60,12 +70,12 @@ $app->group('/api', function () use ($app){
 		} 
         return $this->renderer->render(
 			$response,
-			"item_form.phtml",
+			"item_form_update.phtml",
 			$data = json_decode($elem, true)
 		);
     });
 	
-    $app->put('/items/edit/[{id}]', function ($request, $response, $args) {
+    $app->put('/items/edit/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("updating item");
         $item = $request->getParsedBody();
@@ -88,13 +98,13 @@ $app->group('/api', function () use ($app){
 		$elem = Item::find($args['id']);
 		return $this->renderer->render(
 			$response,
-			"item_form.phtml",
+			"item_form_update.phtml",
 			$data = json_decode($elem, true)
 			);
     });
 	
 	/* DELETE */
-    $app->delete('/items/[{id}]', function ($request, $response, $args) {
+    $app->delete('/items/delete/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("deleting item");
         $data = Item::destroy($args['id']);
