@@ -25,3 +25,5 @@ The full list of methods is displayed below:
 | /api/categories		| GET		| Returns an array of categories		|
 | /api/items/edit/[number]	| GET		| Open form for editing	item with id=number	|
 | /api/items/edit/[number]	| PUT		| Update item with id=number			|
+| /api/items/add		| GET		| Open form for creating item			|
+| /api/items/add		| POST		| Create the new item				|
