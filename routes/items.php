@@ -104,10 +104,25 @@ $app->group('/api', function () use ($app){
     });
 	
 	/* DELETE */
+	$app->get('/items/delete/{id}', function ($request, $response, $args) {
+        // put log message
+        $this->logger->info("open form for deleting item");
+        return $this->renderer->render(
+			$response,
+			"item_form_delete.phtml"
+		);
+    });
+	
     $app->delete('/items/delete/{id}', function ($request, $response, $args) {
         // put log message
         $this->logger->info("deleting item");
         $data = Item::destroy($args['id']);
-        return $this->response->withJson($data, 200);
+		if($data == null)
+			$this->response
+				->withStatus(400)
+				->withHeader('Content-Type', 'text/html')
+				->write('Bad Request');
+				return $this->response; 
+        return $data;
     });
 });
