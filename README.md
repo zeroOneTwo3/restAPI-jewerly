@@ -4,6 +4,8 @@ This is a simple Slim PHP micro framework application that manages a list of ite
 
 Run git clone command from the directory in which you want to install your new Rest API application.
 
+	git clone https://github.com/zeroOneTwo3/restAPI-jewerly.git
+
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `logs/` is web writeable.
 
@@ -11,8 +13,8 @@ Run git clone command from the directory in which you want to install your new R
 
 This project uses Composer. To run the application in development, you can run these commands 
 
-	cd [app-name]
-	php composer.phar start
+	cd restAPI-jewerly
+	php composer.phar install
   
 The full list of methods is displayed below:
 
